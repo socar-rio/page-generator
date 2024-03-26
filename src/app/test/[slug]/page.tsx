@@ -1,7 +1,3 @@
-// import { notFound } from "next/navigation"
-
-import { revalidatePath } from "next/cache"
-
 // export const generateMetadata = ({ params }: Props) => {
 //   return {
 //     title: `${params.slug} 제품 이름`,
@@ -24,8 +20,9 @@ type Data = {
 
 export default async function TestPage({ params }: Props) {
   console.log(params.slug)
+
   const res = await fetch(`https://meowfacts.herokuapp.com?${params.slug}`, {
-    next: { tags: ["a"] },
+    next: { tags: [params.slug] },
   })
   const data: Data = await res.json()
   const text = data.data[0]
@@ -37,10 +34,3 @@ export default async function TestPage({ params }: Props) {
     </div>
   )
 }
-
-// export function generateStaticParams() {
-//   const products = ["pants", "skirt", "test2"]
-//   return products.map((product) => ({
-//     slug: product,
-//   }))
-// }

@@ -1,10 +1,7 @@
 import Image from "next/image"
 import styles from "./page.module.css"
-import { revalidateTag } from "next/cache"
 
 export default function Home() {
-  revalidateTag("a")
-
   return (
     <main className={styles.main}>
       <div className={styles.description}>
